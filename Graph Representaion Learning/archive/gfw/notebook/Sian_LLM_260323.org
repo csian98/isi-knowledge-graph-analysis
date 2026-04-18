@@ -1,0 +1,28 @@
+* Sian_LLM_260323
+
+#+begin_src shell :results output
+curl http://128.9.35.155:8002/v1/models
+curl http://128.9.35.155:8002/v1/completions -H "Content-Type: application/json" -d '{
+	"model": "openai/gpt-oss-120b",
+	"prompt": "Hello",
+	"max_tokens": 4096,
+	"temperature": 0.7
+}' | jq
+
+curl http://128.9.35.155:8002/v1/completions -H "Content-Type: application/json" -d '{
+	"model": "openai/gpt-oss-120b",
+	"prompt": "Hello",
+	"max_tokens": 4096,
+	"temperature": 0.7,
+	"stream": true
+}' | jq
+
+curl http://128.9.35.155:8002/v1/chat/completions -H "Content-Type: application/json" -d '{
+	"model": "openai/gpt-oss-120b",
+	"messages": [
+		{"role": "user", "content": "Tell me about ISI USC"}
+	],
+	"max_tokens": 4096,
+	"temperature": 0.7
+}' | jq
+#+end_src
